@@ -6,3 +6,38 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@using (var db = new MyApp.DataLayer.AppDbContext())
+{
+    db.Database.EnsureCreated();
+
+    @* var user = new UserEntity { Name = "Shannon Debbusye", Email = "shanon@hotmail.com" }; *@
+    @* db.Users.Add(user); *@
+    @* db.SaveChanges(); *@
+    @* Console.WriteLine($"User {user.Name} with ID {user.Id} added."); *@
+
+    @* Console.WriteLine("All users in the database:"); *@
+    var users = db.Users.ToList();
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in users)
+            {
+                <tr>
+                    <td>@u.Id</td>
+                    <td>@u.Name</td>
+                    <td>@u.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    //Console.ReadKey();  //toto je ze musim stlacit enter, aby sa ukazal internet !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+}

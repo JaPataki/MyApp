@@ -1,0 +1,37 @@
+﻿@using MyApp.DataLayer.Entities
+@model List<UserEntity>
+
+<table class="table border-2">
+    <thead>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                Name
+            </td>
+            <td>
+                Email
+            </td>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @user.Id
+                </td>
+                <td>
+                    @user.Name
+                </td>
+                <td>
+                    @user.Email
+                </td>
+            </tr>
+        })
+    </tbody>
+
+</table>

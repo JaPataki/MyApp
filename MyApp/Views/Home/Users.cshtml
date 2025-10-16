@@ -25,6 +25,7 @@
                     @user.Id
                 </td>
                 <td>
+                    <a href="@Url.Action("UserDetail","Home",new{ userPublicId= user.PublicId})">
                     @user.Name
                 </td>
                 <td>

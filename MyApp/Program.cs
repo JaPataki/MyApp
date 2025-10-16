@@ -33,11 +33,11 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-using (var db = new MyApp.DataLayer.AppDbContext())
+using (var db = new AppDbContext())
 {
     db.Database.EnsureCreated();
 
-    var user = new UserEntity { Name = "Shannon Debbusye", Email = "shanon@hotmail.com" };
+    var user = new UserEntity { Name = "Shannon Debbusye", Email = "shanon@hotmail.com", PublicId = Guid.NewGuid() };
     db.Users.Add(user);
     db.SaveChanges();
     Console.WriteLine($"User {user.Name} with ID {user.Id} added.");
@@ -51,4 +51,3 @@ using (var db = new MyApp.DataLayer.AppDbContext())
     //Console.ReadKey();  //toto je ze musim stlacit enter, aby sa ukazal internet !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 app.Run();
-

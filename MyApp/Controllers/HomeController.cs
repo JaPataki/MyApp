@@ -19,6 +19,19 @@ namespace MyApp.Controllers
             _context = context;
         }
 
+        public IActionResult UserDetail(Guid userPublicId) 
+        {
+            var user = _context.Users
+                                .FirstOrDefault(u => u.PublicId == userPublicId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
         public IActionResult Users()
         {
             var userList = _context.Users.ToList();

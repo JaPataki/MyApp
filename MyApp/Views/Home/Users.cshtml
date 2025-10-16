@@ -1,6 +1,8 @@
 ﻿@using MyApp.DataLayer.Entities
 @model List<UserEntity>
 
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CreateUser">CreateUser</a>
+
 <table class="table border-2">
     <thead>
         <tr>
@@ -32,7 +34,7 @@
                     @user.Email
                 </td>
             </tr>
-        })
+        }
     </tbody>
 
 </table>

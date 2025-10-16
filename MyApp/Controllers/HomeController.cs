@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyApp.Models;
 using MyApp.DataLayer.Entities;
 using MyApp.DataLayer;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace MyApp.Controllers
 {
@@ -30,6 +31,28 @@ namespace MyApp.Controllers
             }
 
             return View(user);
+        }
+
+        [HttpGet]
+        public IActionResult CreateUser()
+        {
+            return View(new CreateUserModel());
+        }
+
+        [HttpPost]
+        public IActionResult CreateUser(CreateUserModel user)
+        {
+            var entity = new UserEntity()
+            {
+                Email = user.Email,
+                Name = user.UserName,
+                PublicId = Guid.NewGuid()
+
+            };
+
+            _context.Users.Add(entity);
+            _context.SaveChanges();
+            return RedirectToAction("Users");
         }
 
         public IActionResult Users()
